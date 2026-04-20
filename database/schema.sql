@@ -1,0 +1,13 @@
+CREATE DATABASE IF NOT EXISTS inventory_db;
+USE inventory_db;
+
+CREATE TABLE IF NOT EXISTS inventory_items (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(128) NOT NULL,
+  category VARCHAR(64) NOT NULL,
+  description VARCHAR(255),
+  location VARCHAR(64) NOT NULL,
+  quantity INT NOT NULL DEFAULT 0,
+  unit_price DOUBLE NOT NULL DEFAULT 0.0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
