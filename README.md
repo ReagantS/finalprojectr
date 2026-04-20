@@ -1,5 +1,8 @@
 # Final Project Inventory System
 
+[![CI](https://github.com/a137816-cmd/finalprojectreag/actions/workflows/ci.yml/badge.svg)](https://github.com/a137816-cmd/finalprojectreag/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/badge/coverage-60%25-brightgreen)](README.md)
+
 A simple inventory management system built in Python with support for MySQL/XAMPP. The project includes automated unit tests, integration tests, and a GitHub Actions CI pipeline that collects coverage data.
 
 ## Features
