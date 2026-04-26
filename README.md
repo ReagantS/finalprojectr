@@ -1,6 +1,6 @@
 # Final Project Inventory System
 
-[![CI](https://github.com/a137816-cmd/finalprojectreag/actions/workflows/ci.yml/badge.svg)](https://github.com/a137816-cmd/finalprojectreag/actions/workflows/ci.yml)
+[![CI](https://github.com/ReagantS/finalprojectr/actions/workflows/ci.yml/badge.svg)](https://github.com/ReagantS/finalprojectr/actions/workflows/ci.yml)
 [![Coverage](https://img.shields.io/badge/coverage-85%25-brightgreen)](README.md)
 [![Tests](https://img.shields.io/badge/tests-21%2F21%20passed-success)]()
 [![Python 3.11](https://img.shields.io/badge/python-3.11%2B-blue)]()
