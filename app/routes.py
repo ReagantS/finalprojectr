@@ -1,12 +1,18 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template
 from app.database import get_session
 from app.service import InventoryService
 
-inventory_bp = Blueprint("inventory", __name__)
+inventory_bp = Blueprint("inventory", __name__, template_folder='templates', static_folder='static')
 
 
 def _json_error(message, status=400):
     return jsonify({"error": message}), status
+
+
+# Web UI route
+@inventory_bp.route("/", methods=["GET"])
+def index():
+    return render_template("index.html")
 
 
 @inventory_bp.route("/items", methods=["GET"])
