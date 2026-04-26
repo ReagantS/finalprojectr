@@ -12,24 +12,43 @@ on:
 
 jobs:
   test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - uses: actions/checkout@v4
+      
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
+      
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install Flask SQLAlchemy PyMySQL pytest pytest-cov
           pip install -r requirements.txt
+      
       - name: Run tests with coverage
         run: |
-          pytest --cov=app --cov-report=xml --cov-report=term-missing
+          pytest --cov=app --cov-report=xml --cov-report=term-missing tests/
+      
       - name: Upload coverage report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: coverage.xml
+      
+      - name: Check coverage threshold
+        run: |
+          pip install coverage
+          coverage xml
+          python -c "
+          import xml.etree.ElementTree as ET
+          root = ET.parse('coverage.xml').getroot()
+          coverage_pct = float(root.get('line-rate', 0)) * 100
+          print(f'Code Coverage: {coverage_pct:.1f}%')
+          assert coverage_pct >= 60, f'Coverage {coverage_pct:.1f}% is below 60% threshold'
+          "
