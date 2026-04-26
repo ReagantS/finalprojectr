@@ -1,3 +1,4 @@
+from contextlib import contextmanager
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from app.config import get_database_url
@@ -17,10 +18,15 @@ def init_engine():
     return engine
 
 
+@contextmanager
 def get_session():
     if SessionLocal is None:
         init_engine()
-    return SessionLocal()
+    session = SessionLocal()
+    try:
+        yield session
+    finally:
+        session.close()
 
 
 def init_database():
